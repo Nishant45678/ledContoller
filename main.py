@@ -12,12 +12,11 @@ tipIds = [4, 8, 12, 16, 20]
 
 video = cv2.VideoCapture(0)
 
-with mp_hand.Hands(min_detection_confidence=0.5,
-                   min_tracking_confidence=0.5) as hands:
+with mp_hand.Hands(min_detection_confidence=0.5,min_tracking_confidence=0.5) as hands:
     while True:
         ret, image = video.read()
-        image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        results = hands.process(image_rgb)
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        results = hands.process(image)
         image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
         lmList = []
         if results.multi_hand_landmarks:
